@@ -16,14 +16,14 @@ class Nota {
    
     public function registrar() {
         $query = "INSERT INTO " . $this->table_name . " (estudiante, descripcion, nota) VALUES (:estudiante, :descripcion, :nota)";
-
         $stmt = $this->conn->prepare($query);
 
-   
+        
         $this->estudiante = htmlspecialchars(strip_tags($this->estudiante));
         $this->descripcion = htmlspecialchars(strip_tags($this->descripcion));
         $this->nota = htmlspecialchars(strip_tags($this->nota));
 
+   
         $stmt->bindParam(":estudiante", $this->estudiante);
         $stmt->bindParam(":descripcion", $this->descripcion);
         $stmt->bindParam(":nota", $this->nota);
@@ -35,7 +35,6 @@ class Nota {
         return false;
     }
 
-   
     public function listar() {
         $query = "SELECT id, estudiante, descripcion, nota FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
@@ -43,7 +42,6 @@ class Nota {
 
         return $stmt;
     }
-
 
     public function obtenerPromedio() {
         $query = "SELECT AVG(nota) as promedio FROM " . $this->table_name;
@@ -54,19 +52,3 @@ class Nota {
         return $row['promedio'] ?? 0; 
     }
 }
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
-
-
