@@ -1,9 +1,10 @@
 <?php
 
+
 include_once 'config/database.php';
 
-include_once 'controllers/NotaController.php';
 
+include_once 'controllers/NotaController.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -16,9 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['ac
     $mensaje = $notaController->registrarNota($_POST['estudiante'], $_POST['descripcion'], $_POST['nota']);
 }
 
-
 $notas = $notaController->listarNotas();
-$promedio = $notaController->obtenerPromedio(); 
+$promedio = $notaController->obtenerPromedio();  
 
 
 include_once 'views/index.php';
